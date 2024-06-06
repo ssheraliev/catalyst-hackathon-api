@@ -1,1 +1,2 @@
-# catalyst-hackathon-api
+# Catalyst-API-Hackathon
+Diagrid Catalyst API Hackathon Repository

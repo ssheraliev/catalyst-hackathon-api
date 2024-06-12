@@ -1,22 +1,22 @@
 # Python base image
-FROM python:3.12-alpine
+FROM python:3.9-slim
 
-# Setting the working dir
+# Set working directory
 WORKDIR /app
 
-# Exposing the port on which the application will run
-EXPOSE 5000
+# Copy requirements file
+COPY requirements.txt ./
 
-# Copy the requirements file to the working directory
-COPY requirements.txt .
-
-# Install the Python dependencies
+# Install dependencies
 RUN pip install -r requirements.txt
 
-# Copy the application code to the working directory
+# Copy application code
 COPY . .
 
-ENV PORT 5000
+# Expose FastAPI appl
+EXPOSE 8000
 
-# Run the application
-CMD ["python", "app.py"]
+ENV UVICORN_PORT 8000
+
+# Command to run the application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
